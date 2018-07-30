@@ -1,0 +1,30 @@
+{
+  "name": "sfx-resolve",
+  "description": "Resolves an OpenURL against an SFX instance",
+  "author": "Mehmet Celik",  
+  "version": "1.0.0",
+  "bin": {
+    "sfxResolve": "./server.js"
+  },  
+  "license": "MIT",
+  "keywords": [
+    "ExLibris",
+    "SFX"
+  ],  
+  "homepage": "https://github.com/mehmetc/sfxResolve",
+  "bugs": {
+    "url": "https://github.com/mehmetc/sfxResolve/issues",
+    "email": "mehmet@celik.be"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mehmetc/sfxResolve.git"
+},  
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "promise": "^8.0.1",
+    "xml-js": "^1.6.7"
+  }
+}
