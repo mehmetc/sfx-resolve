@@ -128,16 +128,22 @@ function sfxResolve(sfxBase, remoteIp) {
             'Content-Type': 'application/xml'
           }
         }).then((response) => {          
-          console.log(new Date().toLocaleString(), remoteIp, JSON.stringify(_url2Data(sfxUrl)) );
-          //console.log(response.data);
+          console.log(new Date().toLocaleString(), remoteIp, JSON.stringify(_url2Data(openUrl)) );
+          //console.log("\n\n"+response.data+"\n\n");
           let data = convert.xml2js(response.data, {
             compact: true,
             ignoreComment: true,
             ignoreDeclaration: true
           });
+
           if (data && data.ctx_obj_set && data.ctx_obj_set.ctx_obj && data.ctx_obj_set.ctx_obj.ctx_obj_targets) {
             let target_data = [];
             let obj_targets = data.ctx_obj_set.ctx_obj.ctx_obj_targets.target;
+        
+            if (obj_targets && !Array.isArray(obj_targets)) {
+              obj_targets = [obj_targets];
+            }
+
             if (obj_targets && Array.isArray(obj_targets)) {
               obj_targets.forEach(target => {
                 target_data.push({target_url:target.target_url['_text'], facility: 'ZHB / Uni / PH / HSLU', target_name:target.target_public_name['_text']});
