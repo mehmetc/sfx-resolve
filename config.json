@@ -1,0 +1,7 @@
+{
+    "endpoints": [
+        {"code": "zhblu", "name": "ZHB / Uni / PH", "url": "https://sfx.metabib.ch/sfx_ilu-zhblu"},
+        {"code": "hslu", "name": "HSLU", "url": "https://sfx.metabib.ch/sfx_ilu-hslu"}        
+    ],
+    "cache": "./cache"    
+}

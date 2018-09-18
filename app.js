@@ -6,43 +6,43 @@
   Mehmet Celik
 */
 
-var express = require('express');
-var cors = require('cors');
-var app = express();
-var sfxResolve = require('./sfx');
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const sfxResolver = require('./sfx');
 
+// set cors headers to allow cross domain calls from the browser 
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 app.use(cors());
-app.get('/', function(req, res) {
+
+/**
+ * This is the main application. Only 1 parameter is needed 'url' it should contain the OpenURL
+ * @example https://sfxresolve?url=[OpenUrl]
+ */
+app.get('/', async (req, res, next) => {
     try {
-        var remoteIp = req.query.ip || null;
         var sfxUrl = req.query.url || null;
-      
-        if (remoteIp === null || sfxUrl === null) {
+
+        //fail is 'url' parameter is null
+        if (sfxUrl === null || sfxUrl.length == 0) {
             res.status(503);
             res.header('Content-Type', 'application/json ');
-            res.json({error: 'Please supply "ip" and "url" parameters'});
+            res.json({
+                error: 'Please supply OpenUrl in "url" parameter'
+            });
             res.end();
         } else {
-            if (sfxUrl.includes('sfx.')) {
-                const sfx = sfxResolve('https://sfx.metabib.ch/sfx_ilu', remoteIp);
-                  
-                sfx.resolve(sfxUrl).then(r => {
-                    res.json(r);
-                    res.end();
-                }).catch(err => {
-                    res.json(err);
-                    res.end();
-                });
-            } else {
-                res.json([]);
-                res.end();
-            }
-      
-        }    
-    } catch(e) {
-        res.json({error: e});
-        res.end();
+
+            response = await sfxResolver.resolve(sfxUrl);
+            res.json(response);
+            res.end();
+        }
+    } catch (e) {
+        //return the caught error
+        next(e);
     }
 });
 
+
+//make app public
 module.exports = app;
