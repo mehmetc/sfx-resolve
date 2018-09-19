@@ -17,7 +17,7 @@ cache = (function (){
     }
 
     return {
-        get: async function(key) {
+        get: async function(key, remoteIp='0.0.0.0') {
             try {
                 let err, value = await cacheDb.get(key);
 
@@ -29,23 +29,23 @@ cache = (function (){
                 }
 
                 let data = _load(key, value);
-                console.log(new Date().toLocaleString(), key, "from cache");
+                console.log(new Date().toLocaleString(), remoteIp, key, "from cache");
                 return data;
             } catch(e) {
-                console.log(e.message);
+                console.error(e.message);
                 throw e;
             }
         },
-        put: async function(key,value) {
+        put: async function(key, value, remoteIp = '0.0.0.0') {
             try {
                 let err = await cacheDb.put(key, JSON.stringify({created_on: Date.now(), data: value}));
                 if (err) {
                     throw new Error(`Unable to create ${key} with ${value}`);
                 }
-                console.log(new Date().toLocaleString(), key, "cached");
+                console.log(new Date().toLocaleString(), remoteIp, key, "cached");
                 return key;            
             } catch(e) {
-                console.log(e.message);
+                console.error(e.message);
                 throw e;
             }
         }

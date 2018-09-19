@@ -21,7 +21,9 @@ app.use(cors());
  */
 app.get('/', async (req, res, next) => {
     try {
-        var sfxUrl = req.query.url || null;
+        const sfxUrl = req.query.url || null;
+        const remoteIp = req.query.ip || '0.0.0.0';
+        
 
         //fail is 'url' parameter is null
         if (sfxUrl === null || sfxUrl.length == 0) {
@@ -33,7 +35,7 @@ app.get('/', async (req, res, next) => {
             res.end();
         } else {
 
-            response = await sfxResolver.resolve(sfxUrl);
+            response = await sfxResolver.resolve(sfxUrl, remoteIp);
             res.json(response);
             res.end();
         }

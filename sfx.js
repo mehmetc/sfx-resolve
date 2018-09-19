@@ -51,18 +51,45 @@ sfxResolver = (function () {
 
       if (obj_targets && Array.isArray(obj_targets)) {
         obj_targets.filter(f => f.service_type['_text'] == 'getFullTxt')
-          .forEach(target => {
-            targetData.push({
-              target_url: target.target_url['_text'],
-              facility: facility,
-              target_name: target.target_public_name['_text']
-            });
+          .forEach(target => {            
+            targetData.push(classify(facility, target.target_public_name['_text'],  target.target_url['_text']))
           });
       }
     }
 
     return targetData;
   }
+
+
+  function classify(facility, targetName, targetUrl){    
+    if (/http:\/\/site.ebrary.com\/lib\/zhbluzern\//.test(targetUrl)) {
+        facility = 'ZHB / Uni / PH';
+        targetName = 'Ebrary';
+        targetUrl = targetUrl;
+    } else if (/www.dibizentral.ch/.test(targetUrl)) {
+        facility = '';            
+        targetName = 'DiBiZentral';
+        targetUrl = targetUrl;       
+    } else if (/univportal.naxosmusiclibrary.com/.test(targetUrl)) {
+        facility = 'HSLU';            
+        targetName = 'Naxos Music Library';
+        targetUrl = targetUrl;       
+    } else if (/imslp.org/.test(targetUrl)) {
+        facility = '';            
+        targetName = 'International Music Score Library Project';
+        targetUrl = targetUrl;                   
+    } else if (/rzblx10.uni-regensburg.de/.test(targetUrl)) {            
+        facility = 'ZHB / Uni / PH';
+        targetName = 'Datenbank-Infosystem';
+        targetUrl = targetUrl;            
+    } 
+
+    return { 
+      target_url: targetUrl,
+      facility: facility,
+      target_name: targetName
+    }
+}
 
   /**
    * Build the SFX url that needs to be resolved
@@ -92,14 +119,14 @@ sfxResolver = (function () {
   }
 
 
-  async function asyncResolve(openUrl) {
+  async function asyncResolve(openUrl, remoteIp='0.0.0.0') {
     let targetData = [];
     const hash = _hash(openUrl);
 
     try {
-      targetData = await cache.get(hash);
+      targetData = await cache.get(hash, remoteIp);
     } catch (e) {
-      console.log(new Date().toLocaleString(), hash, "from service");
+      console.log(new Date().toLocaleString(), remoteIp, hash, "from service");
 
       let endpoint_names = []
       const endpoints = config.endpoints.map(m => {
@@ -115,7 +142,7 @@ sfxResolver = (function () {
       })
 
       if (targetData) {
-        cache.put(hash, targetData);
+        cache.put(hash, targetData, remoteIp);
       }
     }
 
@@ -123,8 +150,8 @@ sfxResolver = (function () {
   }
 
   return {
-    resolve: async function (openUrl) {
-      let data = await asyncResolve(openUrl);
+    resolve: async function (openUrl, remoteIp='0.0.0.0') {
+      let data = await asyncResolve(openUrl, remoteIp);
 
       return data;
     }
