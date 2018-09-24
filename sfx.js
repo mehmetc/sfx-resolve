@@ -51,7 +51,7 @@ sfxResolver = (function () {
 
       if (obj_targets && Array.isArray(obj_targets)) {
         obj_targets.filter(f => f.service_type['_text'] == 'getFullTxt')
-          .forEach(target => {            
+          .forEach(target => {                        
             targetData.push(classify(facility, target.target_public_name['_text'],  target.target_url['_text']))
           });
       }
@@ -62,27 +62,27 @@ sfxResolver = (function () {
 
 
   function classify(facility, targetName, targetUrl){    
-    if (/http:\/\/site.ebrary.com\/lib\/zhbluzern\//.test(targetUrl)) {
-        facility = 'ZHB / Uni / PH';
-        targetName = 'Ebrary';
-        targetUrl = targetUrl;
-    } else if (/www.dibizentral.ch/.test(targetUrl)) {
-        facility = '';            
-        targetName = 'DiBiZentral';
-        targetUrl = targetUrl;       
-    } else if (/univportal.naxosmusiclibrary.com/.test(targetUrl)) {
-        facility = 'HSLU';            
-        targetName = 'Naxos Music Library';
-        targetUrl = targetUrl;       
-    } else if (/imslp.org/.test(targetUrl)) {
-        facility = '';            
-        targetName = 'International Music Score Library Project';
-        targetUrl = targetUrl;                   
-    } else if (/rzblx10.uni-regensburg.de/.test(targetUrl)) {            
-        facility = 'ZHB / Uni / PH';
-        targetName = 'Datenbank-Infosystem';
-        targetUrl = targetUrl;            
-    } 
+    // if (/http:\/\/site.ebrary.com\/lib\/zhbluzern\//.test(targetUrl)) {
+    //     facility = 'ZHB / Uni / PH';
+    //     targetName = 'Ebrary';
+    //     targetUrl = targetUrl;
+    // } else if (/www.dibizentral.ch/.test(targetUrl)) {
+    //     facility = '';            
+    //     targetName = 'DiBiZentral';
+    //     targetUrl = targetUrl;       
+    // } else if (/univportal.naxosmusiclibrary.com/.test(targetUrl)) {
+    //     facility = 'HSLU';            
+    //     targetName = 'Naxos Music Library';
+    //     targetUrl = targetUrl;       
+    // } else if (/imslp.org/.test(targetUrl)) {
+    //     facility = '';            
+    //     targetName = 'International Music Score Library Project';
+    //     targetUrl = targetUrl;                   
+    // } else if (/rzblx10.uni-regensburg.de/.test(targetUrl)) {            
+    //     facility = 'ZHB / Uni / PH';
+    //     targetName = 'Datenbank-Infosystem';
+    //     targetUrl = targetUrl;            
+    // } 
 
     return { 
       target_url: targetUrl,

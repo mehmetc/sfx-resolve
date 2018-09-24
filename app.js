@@ -24,7 +24,6 @@ app.get('/', async (req, res, next) => {
         const sfxUrl = req.query.url || null;
         const remoteIp = req.query.ip || '0.0.0.0';
         
-
         //fail is 'url' parameter is null
         if (sfxUrl === null || sfxUrl.length == 0) {
             res.status(503);
