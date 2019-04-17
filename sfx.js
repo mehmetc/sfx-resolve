@@ -51,8 +51,8 @@ sfxResolver = (function () {
 
       if (obj_targets && Array.isArray(obj_targets)) {
         obj_targets.filter(f => f.service_type['_text'] == 'getFullTxt')
-          .forEach(target => {                        
-            targetData.push(classify(facility, target.target_public_name['_text'],  target.target_url['_text']))
+          .forEach(target => {
+            targetData.push(classify(facility, target.target_public_name['_text'], target.target_url['_text'], target.coverage))
           });
       }
     }
@@ -61,42 +61,117 @@ sfxResolver = (function () {
   }
 
 
-  function classify(facility, targetName, targetUrl){    
-    // if (/http:\/\/site.ebrary.com\/lib\/zhbluzern\//.test(targetUrl)) {
-    //     facility = 'ZHB / Uni / PH';
-    //     targetName = 'Ebrary';
-    //     targetUrl = targetUrl;
-    // } else if (/www.dibizentral.ch/.test(targetUrl)) {
-    //     facility = '';            
-    //     targetName = 'DiBiZentral';
-    //     targetUrl = targetUrl;       
-    // } else if (/univportal.naxosmusiclibrary.com/.test(targetUrl)) {
-    //     facility = 'HSLU';            
-    //     targetName = 'Naxos Music Library';
-    //     targetUrl = targetUrl;       
-    // } else if (/imslp.org/.test(targetUrl)) {
-    //     facility = '';            
-    //     targetName = 'International Music Score Library Project';
-    //     targetUrl = targetUrl;                   
-    // } else if (/rzblx10.uni-regensburg.de/.test(targetUrl)) {            
-    //     facility = 'ZHB / Uni / PH';
-    //     targetName = 'Datenbank-Infosystem';
-    //     targetUrl = targetUrl;            
-    // } 
+  function classify(facility, targetName, targetUrl, coverage) {
+    if (/http:\/\/site.ebrary.com\/lib\/zhbluzern\//.test(targetUrl)) {
+      facility = 'ZHB / Uni / PH';
+      targetName = 'Ebrary';
+      targetUrl = targetUrl;
+    } else if (/www.dibizentral.ch/.test(targetUrl)) {
+      facility = '';
+      targetName = 'DiBiZentral';
+      targetUrl = targetUrl;
+    } else if (/univportal.naxosmusiclibrary.com/.test(targetUrl)) {
+      facility = 'HSLU';
+      targetName = 'Naxos Music Library';
+      targetUrl = targetUrl;
+    } else if (/imslp.org/.test(targetUrl)) {
+      facility = '';
+      targetName = 'International Music Score Library Project';
+      targetUrl = targetUrl;
+    } else if (/rzblx10.uni-regensburg.de/.test(targetUrl)) {
+      facility = 'ZHB / Uni / PH';
+      targetName = 'Datenbank-Infosystem';
+      targetUrl = targetUrl;
+    }
 
-    return { 
+    return {
       target_url: targetUrl,
       facility: facility,
-      target_name: targetName
+      target_name: targetName,
+      coverage: _parseCoverage(coverage)
     }
-}
+  }
+
+  /**
+   * 
+   * @param {Object} coverage - Coverage object from SFX XML
+   */
+  function _parseCoverage(coverage) {
+    let result = { coverage: {}, embargo: {} };
+
+    let valueExistsForObjectPath = (object, path) => {
+      try {
+        let nodes = path.split('.');
+        let node = nodes.shift();
+        if ((node) && (object.hasOwnProperty(node))) {
+          if (nodes.length > 0) {
+            return valueExistsForObjectPath(object[node], nodes.join('.'));
+          } else {
+            return object[node];
+          }
+        } else {
+          return undefined;
+        }
+      } catch (e) {
+        console.log(e);
+        return undefined
+      }
+    }
+
+    let addValue = (object, objectKey, key, value) => {
+
+      if (value) {
+        if (objectKey) {
+          if (!object.hasOwnProperty(objectKey)) {
+            object[objectKey] = {}
+          }
+          object[objectKey][key] = value;
+        } else {
+          object[key] = value
+        }
+      }
+    }
+
+    addValue(result.coverage, null, 'statement', valueExistsForObjectPath(coverage, 'coverage_text.threshold_text.coverage_statement._text'))
+    addValue(result.coverage, 'year', 'from', valueExistsForObjectPath(coverage, 'from.year._text'));
+    addValue(result.coverage, 'year', 'to', valueExistsForObjectPath(coverage, 'to.year._text'));
+
+    addValue(result.coverage, 'volume', 'from', valueExistsForObjectPath(coverage, 'from.volume._text'));
+    addValue(result.coverage, 'volume', 'to', valueExistsForObjectPath(coverage, 'to.volume._text'));
+
+    addValue(result.coverage, 'issue', 'from', valueExistsForObjectPath(coverage, 'from.issue._text'));
+    addValue(result.coverage, 'issue', 'to', valueExistsForObjectPath(coverage, 'to.issue._text'));
+
+    addValue(result.embargo, null, 'statement', valueExistsForObjectPath(coverage, 'coverage_text.embargo_text.embargo_statement._text'));
+
+    if (embargoAvailability = valueExistsForObjectPath(coverage, 'embargo.availability._text')) {
+      let year = valueExistsForObjectPath(coverage, 'embargo.year._text');
+      let month = valueExistsForObjectPath(coverage, 'embargo.month._text');
+      let days = valueExistsForObjectPath(coverage, 'embargo.days._text');
+
+      let sign = '';
+      if (embargoAvailability === 'not_available') {
+        sign = '-';
+      }
+      if (year) {
+        addValue(result.emborgo, 'year', 'to', sign + year);
+      } else if (month) {
+        addValue(result.emborgo, 'month', 'to', sign + month);
+      } else if (days) {
+        addValue(result.emborgo, 'month', 'to', sign + days);
+      }
+    }
+
+    return result;
+  }
+
 
   /**
    * Build the SFX url that needs to be resolved
    * @param {String} openUrl - OpenURL that needs to be transformed into an SFX url
    */
   function _buildResolveUrl(openUrl) {
-    let query = `${openUrl}&sfx.response_type=multi_obj_xml&url_ctx_fmt=info:ofi/fmt:xml:xsd:ctx`;
+    let query = `${openUrl}&sfx.response_type=multi_obj_detailed_xml&url_ctx_fmt=info:ofi/fmt:xml:xsd:ctx`;
     return query;
   }
 
@@ -119,7 +194,7 @@ sfxResolver = (function () {
   }
 
 
-  async function asyncResolve(openUrl, remoteIp='0.0.0.0') {
+  async function asyncResolve(openUrl, remoteIp = '0.0.0.0') {
     let targetData = [];
     const hash = _hash(openUrl);
 
@@ -150,7 +225,7 @@ sfxResolver = (function () {
   }
 
   return {
-    resolve: async function (openUrl, remoteIp='0.0.0.0') {
+    resolve: async function (openUrl, remoteIp = '0.0.0.0') {
       let data = await asyncResolve(openUrl, remoteIp);
 
       return data;
