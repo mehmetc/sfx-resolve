@@ -1,6 +1,11 @@
 # sfx-resolve
 Resolves an OpenURL against an SFX instance
 
+## Docker
+``` bash
+docker run -p 3000:3000 -v /path/to/config.json:/app/config.json -v /path/to/cache:/app/cache sfx-resolve:latest
+```
+
 ## Install
 ``` bash 
 yarn global add sfx-resolve
@@ -35,3 +40,12 @@ $ sfxResolve
     "cache": "./cache"    
 }
 ```
+
+##Usage
+- ip: optional IP address of caller
+- url: OpenUrl to resolve
+
+```
+http://127.0.0.1:3000?ip=1.1.1.1&url=http://sfx.service.com?ctx_ver=Z39.88-2004 ...
+```
+
