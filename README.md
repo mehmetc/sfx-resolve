@@ -41,7 +41,7 @@ $ sfxResolve
 }
 ```
 
-##Usage
+## Usage
 - ip: optional IP address of caller
 - url: OpenUrl to resolve
 
