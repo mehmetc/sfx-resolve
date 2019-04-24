@@ -15,17 +15,15 @@ ADD https://yarnpkg.com/latest.tar.gz /opt
 RUN mv /opt/yarn* /opt/yarn
 ENV PATH "$PATH:/opt/yarn/bin"
 
-
-RUN mkdir /app
-RUN chown -R node:node /app
-USER node
-
 EXPOSE 3000
 
+RUN mkdir /app
+
 COPY . /app
+RUN chown -R node:node /app
+USER node
 WORKDIR /app
 
 RUN yarn
 
 CMD ["node", "server.js"]
-
