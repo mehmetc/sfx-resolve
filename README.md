@@ -3,7 +3,7 @@ Resolves an OpenURL against an SFX instance
 
 ## Docker
 ``` bash
-docker run -p 3000:3000 -v /path/to/config.json:/app/config.json -v /path/to/cache:/app/cache sfx-resolve:latest
+docker run -p 3000:3000 -v /path/to/config.json:/app/config.json -v /path/to/cache:/app/cache mehmetc/sfx-resolve:latest
 ```
 
 ## Install
