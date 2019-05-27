@@ -1,4 +1,4 @@
-FROM node:current-alpine 
+FROM node:11-alpine 
 MAINTAINER mehmet.celik@kuleuven.be
 
 RUN apk add --update \
