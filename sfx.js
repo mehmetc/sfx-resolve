@@ -148,17 +148,19 @@ sfxResolver = (function () {
       let year = valueExistsForObjectPath(coverage, 'embargo.year._text');
       let month = valueExistsForObjectPath(coverage, 'embargo.month._text');
       let days = valueExistsForObjectPath(coverage, 'embargo.days._text');
-
-      let sign = '';
+    
       if (embargoAvailability === 'not_available') {
-        sign = '-';
+        addValue(result.embargo, 'availability', 'status', embargoAvailability);
       }
-      if (year) {
-        addValue(result.embargo, 'year', 'to', sign + year);
+      if (year) {        
+        addValue(result.embargo, 'availability', 'value', year);
+        addValue(result.embargo, 'availability', 'unit', 'year');
       } else if (month) {
-        addValue(result.embargo, 'month', 'to', sign + month);
+        addValue(result.embargo, 'availability', 'value', month);
+        addValue(result.embargo, 'availability', 'unit', 'month');        
       } else if (days) {
-        addValue(result.embargo, 'month', 'to', sign + days);
+        addValue(result.embargo, 'availability', 'value', day);
+        addValue(result.embargo, 'availability', 'unit', 'day');        
       }
     }
 
