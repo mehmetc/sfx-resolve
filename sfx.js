@@ -154,11 +154,11 @@ sfxResolver = (function () {
         sign = '-';
       }
       if (year) {
-        addValue(result.emborgo, 'year', 'to', sign + year);
+        addValue(result.embargo, 'year', 'to', sign + year);
       } else if (month) {
-        addValue(result.emborgo, 'month', 'to', sign + month);
+        addValue(result.embargo, 'month', 'to', sign + month);
       } else if (days) {
-        addValue(result.emborgo, 'month', 'to', sign + days);
+        addValue(result.embargo, 'month', 'to', sign + days);
       }
     }
 
