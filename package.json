@@ -21,12 +21,12 @@
     "url": "https://github.com/mehmetc/sfxResolve.git"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "level": "^4.0.0",
+    "axios": "^0.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "level": "^5.0.1",
     "md5": "^2.2.1",
-    "promise": "^8.0.1",
-    "xml-js": "^1.6.7"
+    "promise": "^8.0.3",
+    "xml-js": "^1.6.11"
   }
 }

@@ -1,0 +1,31 @@
+{
+    "http://site.ebrary.com/lib/zhbluzern/" : {
+        "facility": "ZHB / Uni / PH",
+        "name":"Ebrary"
+    },
+    "www.dibizentral.ch" : {
+        "facility": "",
+        "name":"DiBiZentral"
+    },
+    "naxosmusiclibrary.com" : {
+        "facility": "HSLU",
+        "name":"Naxos Music Library"
+    },
+    "imslp.org" : {
+        "facility": "",
+        "name":"International Music Score Library Project"
+    },
+    "rzblx10.uni-regensburg.de" : {
+        "facility": "ZHB / Uni / PH",
+        "name":"Datenbank-Infosystem"
+    },
+    "academic.eb.com": {
+        "facility": "",
+        "name": "Britannica ACADEMIC"
+    },
+    "example.com": {
+        "facility": "name of Campus network leave blank if it does not apply",
+        "name": "text to be displayed on link",
+        "url": "http://overwrite.target.url"
+    }          
+}

@@ -10,6 +10,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const sfxResolver = require('./sfx');
+const fs = require('fs');
+const config = require('./config')('./config.json');
 
 // set cors headers to allow cross domain calls from the browser 
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
@@ -43,6 +45,30 @@ app.get('/', async (req, res, next) => {
         next(e);
     }
 });
+
+/**
+ * return reclassify.json
+ * 
+ * reclassify.json structure
+ * {
+ *      "targetUrl": {
+ *          "facility": "name of the Institution",
+ *          "name": "display name",
+ *          "url": "overwrite targetUrl"
+ *      }
+ * }
+ */
+app.get('/reclassify', async(req, res, next) => {
+    try {
+        res.status(200);
+        res.header('Content-Type', 'application/json ');
+        res.json(JSON.parse(fs.readFileSync(config.reclassify, 'utf8')));
+        res.end();
+
+    } catch(e) {
+        next(e);
+    }
+})
 
 
 //make app public
