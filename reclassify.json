@@ -1,27 +1,19 @@
 {
-    "http://site.ebrary.com/lib/zhbluzern/" : {
-        "facility": "ZHB / Uni / PH",
-        "name":"Ebrary"
-    },
-    "www.dibizentral.ch" : {
-        "facility": "",
-        "name":"DiBiZentral"
-    },
-    "naxosmusiclibrary.com" : {
-        "facility": "HSLU",
-        "name":"Naxos Music Library"
-    },
-    "imslp.org" : {
-        "facility": "",
-        "name":"International Music Score Library Project"
-    },
-    "rzblx10.uni-regensburg.de" : {
-        "facility": "ZHB / Uni / PH",
-        "name":"Datenbank-Infosystem"
-    },
     "academic.eb.com": {
-        "facility": "",
+        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
         "name": "Britannica ACADEMIC"
+    },
+    "en.wikipedia.org": {
+        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Wikipedia (Englisch)"
+    },
+    "hdl.handle.net": {
+        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Hathi Trust"
+    },
+    "www.zora.uzh.ch/": {
+        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": " ZORA (Zurich Open Repository and Archive)"
     },
     "example.com": {
         "facility": "name of Campus network leave blank if it does not apply",
