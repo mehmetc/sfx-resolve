@@ -1,23 +1,137 @@
 {
     "academic.eb.com": {
-        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
         "name": "Britannica ACADEMIC"
     },
-    "en.wikipedia.org": {
-        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
-        "name": "Wikipedia (Englisch)"
+    "41ids-zbl-aleph.hosted.exlibrisgroup.com": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Aleph / Bild"
+    },
+    "www.deslibris.ca": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "desLibris - Documents (Canadian Electronic Library)"
+    },
+    "www.biodiversitylibrary.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Biodiversity Heritage Library"
+    },
+    "www.dibizentral.ch": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "DiBiZentral, mit IDS Luzern-Anmeldung",
+        "view": "41ZBL_DIBIZ"
+    },
+    "dibizentral.onleihe.com": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "DiBiZentral Zeitschriften, mit IDS Luzern-Anmeldung",
+        "view": "41ZBL_DIBIZ_ZS"
+    },
+    "api.digitalnz.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Digital New Zealand (National Library of New Zealand Te Puna Mātauranga o Aotearoa)"
+    },
+    "doabooks.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "DOAB (OAPEN Foundation)"
+    },
+    "www.e-codices.ch": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Digitalisat in e-codices"
+    },
+    "www.e-manuscripta.ch": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Digitalisat in e-manuscripta"
+    },
+    "escholarship.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "eScholarship"
+    },
+    "dx.publications.europa.eu": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "EU Bookshop (European Union - Publications Office)"
+    },
+    "ark.bnf.fr": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Gallica (Bibliothèque Nationale de France)"
+    },
+    "www.gutenberg.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Project Gutenberg"
+    },
+    "hal.archives-ouvertes.fr": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "HAL (Hyper Article en Ligne)"
     },
     "hdl.handle.net": {
-        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Handle.Net"
+    },
+    "babel.hathitrust.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
         "name": "Hathi Trust"
     },
+    "iadb.org/en": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "IADB Repository (Inter-American Development Bank)"
+    },
+    "resolver.kb.nl": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Koninklijke Bibliotheek, Nationale bibliotheek van Nederland"
+    },
+    "oapen.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "O",
+        "view": "41ZBL_KU"
+    },
+    "materialarchiv.ch": {
+        "facility": " HSLU, und frei zugänglich",
+        "name": "Material-Archiv",
+        "view": "41ZBL_MATARCH"
+    },
+    "nap.edu": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "National Academies Press"
+    },
+    "dspace.library.uu.nl": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "NARCIS (National Academic Research and Collaborations Information System)"
+    },
+    "univportal.naxosmusiclibrary.com": {
+        "facility": " HSLU",
+        "name": "Naxos Music Library Streaming Audio",
+        "view": "41ZBL_NML"
+    },
+    "ub.uit.no": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Norwegian Open Research Archives (NORA)"
+    },
+    "oepms.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "OEP - Open Education Platform"
+    },
+    "books.openedition.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "OpenEdition Books"
+    },
+    "overdrive.com": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Overdrive, mit IDS Luzern-Anmeldung",
+        "view": "41ZBL_OD"
+    },
+    "open.umn.edu/opentextbooks": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Open Textbook Library (UMN Center for Open Education)"
+    },
+    "en.wikipedia.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Wikipedia (Englisch)"
+    },
     "www.zora.uzh.ch/": {
-        "facility": "Campusnetz ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
         "name": " ZORA (Zurich Open Repository and Archive)"
     },
     "example.com": {
         "facility": "name of Campus network leave blank if it does not apply",
         "name": "text to be displayed on link",
         "url": "http://overwrite.target.url"
-    }          
+    }
 }
