@@ -1,0 +1,16 @@
+[Unit]
+AssertPathExists=/home/sfxuser01
+Description=Resolves an OpenURL against an SFX instance
+Documentation=https://github.com/mehmetc/sfx-resolve
+Requires=network.target
+
+[Service]
+Type=simple
+User=sfxuser01
+Group=sfxuser01
+WorkingDirectory=/home/sfxuser01
+ExecStart=/home/sfxuser01/start.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
