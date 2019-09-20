@@ -7,7 +7,7 @@
         "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
         "name": "Aleph / Bild"
     },
-    "www.deslibris.ca": {
+    "deslibris.ca": {
         "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
         "name": "desLibris - Documents (Canadian Electronic Library)"
     },
@@ -63,11 +63,15 @@
     },
     "hdl.handle.net": {
         "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
-        "name": "Handle.Net"
+        "name": "Handle Net"
     },
     "babel.hathitrust.org": {
         "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
         "name": "Hathi Trust"
+    },
+    "histbav.hypotheses.org": {
+        "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
+        "name": "Hypotheses (OpenEdition)"
     },
     "iadb.org/en": {
         "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
@@ -79,7 +83,7 @@
     },
     "oapen.org": {
         "facility": " ZHB / Uni / PH / HSLU, und frei zugänglich",
-        "name": "O",
+        "name": "OAPEN",
         "view": "41ZBL_KU"
     },
     "materialarchiv.ch": {

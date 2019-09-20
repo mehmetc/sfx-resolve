@@ -15,13 +15,18 @@ const config = require('./config')('./config.json');
 
 // set cors headers to allow cross domain calls from the browser 
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-app.use(cors());
+
+var corsOptions = {
+    origin: true,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+//app.use(cors());
 
 /**
  * This is the main application. Only 1 parameter is needed 'url' it should contain the OpenURL
  * @example https://sfxresolve?url=[OpenUrl]
  */
-app.get('/', async (req, res, next) => {
+app.get('/', cors(corsOptions), async (req, res, next) => {
     try {
         const sfxUrl = req.query.url || null;
         const remoteIp = req.query.ip || '0.0.0.0';
@@ -58,7 +63,7 @@ app.get('/', async (req, res, next) => {
  *      }
  * }
  */
-app.get('/reclassify', async(req, res, next) => {
+app.get('/reclassify', cors(corsOptions), async(req, res, next) => {
     try {
         res.status(200);
         res.header('Content-Type', 'application/json ');
