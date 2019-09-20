@@ -2,7 +2,7 @@
   "name": "sfx-resolve",
   "description": "Resolves an OpenURL against an SFX instance",
   "author": "Mehmet Celik",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": {
     "sfxResolve": "./server.js"
   },
