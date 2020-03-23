@@ -1,0 +1,6 @@
+[Unit]
+Description=SFX Workers
+Requires=sfx-resolve@0.service sfx-resolve@1.service sfx-resolve@2.service sfx-resolve@3.service sfx-resolve@4.service
+
+[Install]
+WantedBy=default.target
